@@ -13,6 +13,10 @@ const Auth: React.FC<LayoutProps> = ({ children }) => {
   // 인증 여부 확인
   if (false) {
     toast.error(<h1>로그인을 해주세요!</h1>);
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
+
     return (
       <>
         <ToastContainer position='top-center' />
@@ -20,11 +24,7 @@ const Auth: React.FC<LayoutProps> = ({ children }) => {
     );
   }
 
-  return (
-    <Layout>
-      <div>{children}</div>
-    </Layout>
-  );
+  return <div>{children}</div>;
 };
 
 export default Auth;

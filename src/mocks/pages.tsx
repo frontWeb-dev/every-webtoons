@@ -25,15 +25,15 @@ export const pages = [
     withAuth: true,
   },
   {
-    path: '/filter/:category',
-    label: 'filter',
-    element: <FilterPage />,
+    path: '/list/:title',
+    label: 'detail',
+    element: <DetailPage />,
     withAuth: true,
   },
   {
-    path: '/detail/:title',
-    label: 'detail',
-    element: <DetailPage />,
+    path: '/filter/:category',
+    label: 'filter',
+    element: <FilterPage />,
     withAuth: true,
   },
   {
