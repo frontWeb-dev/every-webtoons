@@ -8,15 +8,11 @@ const Router = createBrowserRouter(
     return page.withAuth
       ? {
           path: page.path,
-          element: (
-            <Layout>
-              <Auth>{page.element}</Auth>
-            </Layout>
-          ),
+          element: <Auth>{page.element}</Auth>,
         }
       : {
           path: page.path,
-          element: <Layout>{page.element}</Layout>,
+          element: page.element,
         };
   })
 );
