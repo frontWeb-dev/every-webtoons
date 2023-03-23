@@ -13,7 +13,7 @@ export const pages = [
     withAuth: false,
   },
   {
-    path: '/join',
+    path: '/sign-up',
     label: 'join',
     element: <JoinPage />,
     withAuth: false,
