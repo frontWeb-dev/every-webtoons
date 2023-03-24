@@ -11,11 +11,11 @@ const Auth: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
 
   // 인증 여부 확인
-  if (false) {
+  if (true) {
     toast.error(<h1>로그인을 해주세요!</h1>);
 
     setTimeout(() => {
-      navigate('/');
+      navigate('/sign-in');
     }, 1500);
 
     return (

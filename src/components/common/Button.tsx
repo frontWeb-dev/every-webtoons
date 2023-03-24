@@ -10,25 +10,30 @@ interface ButtonProps {
 
 const Button = ({ common, submit, cancle, children, ...rest }: ButtonProps) => {
   return (
-    <div className='my-4 flex w-full justify-between'>
+    <>
       {common && (
         <button {...rest} className='mb-1 w-full rounded-xl bg-blue-500 py-3 text-white'>
           {children}
         </button>
       )}
 
-      {submit && (
-        <button {...rest} className='w-[48%] rounded-xl bg-blue-500 py-3 text-white'>
-          {children}
-        </button>
-      )}
+      {submit ||
+        (cancle && (
+          <div className='my-4 flex w-full justify-between'>
+            {submit && (
+              <button {...rest} className='w-[48%] rounded-xl bg-blue-500 py-3 text-white'>
+                {children}
+              </button>
+            )}
 
-      {cancle && (
-        <button {...rest} className='w-[48%] rounded-xl bg-red-500 py-3 text-white'>
-          {children}
-        </button>
-      )}
-    </div>
+            {cancle && (
+              <button {...rest} className='w-[48%] rounded-xl bg-red-500 py-3 text-white'>
+                {children}
+              </button>
+            )}
+          </div>
+        ))}
+    </>
   );
 };
 
