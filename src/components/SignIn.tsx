@@ -18,7 +18,12 @@ const Login = () => {
         <Input id='email' type='email' name='email' placeholder='이메일' />
         {/* <AlertMsg>{errors.email}</AlertMsg> */}
 
-        <Input id='password' type='password' name='password' placeholder='비밀번호' />
+        <Input
+          id='password'
+          type='password'
+          name='password'
+          placeholder='비밀번호'
+        />
         {/* <AlertMsg>{errors.password}</AlertMsg> */}
 
         <Button type='submit' common>

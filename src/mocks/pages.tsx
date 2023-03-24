@@ -7,25 +7,25 @@ import SignInPage from '../pages/SignInPage';
 
 export const pages = [
   {
-    path: '/',
-    label: 'home',
+    path: '/sign-in',
+    label: 'sign-in',
     element: <SignInPage />,
     withAuth: false,
   },
   {
     path: '/sign-up',
-    label: 'join',
+    label: 'sign-up',
     element: <JoinPage />,
     withAuth: false,
   },
   {
-    path: '/list',
+    path: '/',
     label: 'list',
     element: <ListPage />,
     withAuth: true,
   },
   {
-    path: '/list/:title',
+    path: '/:title',
     label: 'detail',
     element: <DetailPage />,
     withAuth: true,
