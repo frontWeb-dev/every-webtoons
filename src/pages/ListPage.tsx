@@ -2,7 +2,7 @@ import Layout from './../components/common/Layout';
 
 const ListPage = () => {
   return (
-    <Layout hasTabBar title='모두의 웹툰' goBack='/'>
+    <Layout hasTabBar title='모두의 웹툰'>
       <div></div>
     </Layout>
   );

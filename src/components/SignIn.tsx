@@ -1,35 +1,86 @@
-import React, { useState } from 'react';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { loginEmail } from '../firebase';
 import Button from './common/Button';
 import Input from './common/Input';
 
+interface LoginForm {
+  email: string;
+  password: string;
+  error?: string;
+}
+
 const Login = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginForm>({ mode: 'onChange' });
 
-  // 이메일 & 비밀번호 유효성 검사
+  // 로그인 성공 시 로컬 스토리지에 uid 저장
 
-  // google 로그인 시도 -> 성공 시 로컬 스토리지에 uid 저장
+  // 이메일 / 비밀번호 로그인
+  const onValid = async (data: LoginForm) => {
+    await loginEmail(data.email, data.password)
+      .then((res) => {
+        localStorage.setItem('uid', JSON.stringify(res.user.uid));
+
+        toast.success(<h1>로그인 성공!</h1>, {
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate('/');
+        }, 1500);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(<h1>{error.message}</h1>, {
+          autoClose: 1000,
+        });
+      });
+  };
+
+  const onInValid = (error: FieldErrors) => {
+    console.log(error);
+  };
 
   return (
     <div className='w-full'>
-      <ToastContainer />
-      <form autoComplete='off' className='mb-4 border-b py-4'>
-        <Input id='email' type='email' name='email' placeholder='이메일' />
-        {/* <AlertMsg>{errors.email}</AlertMsg> */}
+      <ToastContainer position='top-center' />
+      <form
+        onSubmit={handleSubmit(onValid, onInValid)}
+        autoComplete='off'
+        className='mb-4 border-b py-4'>
+        <Input
+          register={register('email', {
+            required: '이메일을 입력하세요',
+            pattern: {
+              value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+              message: '올바른 이메일 주소가 아닙니다',
+            },
+          })}
+          name='email'
+          placeholder='이메일'>
+          {errors.email?.message}
+        </Input>
 
         <Input
-          id='password'
-          type='password'
+          register={register('password', {
+            required: '비밀번호를 입력하세요',
+          })}
           name='password'
-          placeholder='비밀번호'
-        />
-        {/* <AlertMsg>{errors.password}</AlertMsg> */}
+          type='password'
+          placeholder='비밀번호'>
+          {errors.password?.message}
+        </Input>
+        {errors.error && <p className='mb-4 pl-2 text-sm text-red-600'>{errors.error.message}</p>}
 
         <Button type='submit' common>
           로그인
         </Button>
-        <div className='flex justify-center space-x-2 text-sm'>
+        <div className='mt-2 flex justify-center space-x-2 text-sm'>
           <p>아직 회원이 아니신가요?</p>
           <Link to='/sign-up' className='text-blue-500'>
             회원가입

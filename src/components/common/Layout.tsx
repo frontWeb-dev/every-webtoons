@@ -17,7 +17,9 @@ const Layout: React.FC<LayoutProps> = ({ title, goBack, hasTabBar, children }) =
   const { pathname } = useLocation();
 
   const navigate = useNavigate();
+
   const uid = localStorage.getItem('uid');
+
   const onclick = (path: string) => {
     navigate(`${path}`);
   };
@@ -27,7 +29,9 @@ const Layout: React.FC<LayoutProps> = ({ title, goBack, hasTabBar, children }) =
       <header className='fixed top-0 flex h-16 w-full max-w-md items-center justify-center border-b bg-white px-4 text-lg font-medium text-gray-700 shadow-sm'>
         {/* 뒤로가기 */}
         {goBack && (
-          <button onClick={() => onclick(goBack)} className='absolute left-4 h-8 w-8 cursor-pointer'>
+          <button
+            onClick={() => onclick(goBack)}
+            className='absolute left-4 h-8 w-8 cursor-pointer'>
             <MdKeyboardArrowLeft size={32} />
           </button>
         )}
@@ -51,7 +55,10 @@ const Layout: React.FC<LayoutProps> = ({ title, goBack, hasTabBar, children }) =
             <div
               key={i}
               onClick={() => onclick(menu.path)}
-              className={joinClass('flex flex-col items-center', menu.path === pathname ? 'text-blue-500' : '')}>
+              className={joinClass(
+                'flex flex-col items-center',
+                menu.path === pathname ? 'text-blue-500' : ''
+              )}>
               {menu.icons}
               <p className='mt-1 text-xs'>{menu.label}</p>
             </div>

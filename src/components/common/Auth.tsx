@@ -10,8 +10,9 @@ interface LayoutProps {
 const Auth: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
 
+  const id = localStorage.getItem('uid');
   // 인증 여부 확인
-  if (true) {
+  if (!id) {
     toast.error(<h1>로그인을 해주세요!</h1>);
 
     setTimeout(() => {
