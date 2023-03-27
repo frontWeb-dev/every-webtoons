@@ -1,7 +1,7 @@
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
-import Button from './common/Button';
-import Input from './common/Input';
+import Button from '@components/common/Button';
+import Input from '@components/common/Input';
 
 interface SignUpProps {
   nickname: string;

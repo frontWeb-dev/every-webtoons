@@ -1,5 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form/dist/types';
-import { joinClass } from './../../libs/utils';
+import { joinClass } from '@libs/utils';
 
 interface InputProps {
   label?: string;

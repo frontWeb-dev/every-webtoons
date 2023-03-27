@@ -1,9 +1,10 @@
 import { FieldErrors, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import { loginEmail } from '../firebase';
-import Button from './common/Button';
-import Input from './common/Input';
+
+import { loginEmail } from '@firebase';
+import Button from '@components/common/Button';
+import Input from '@components/common/Input';
 
 interface LoginForm {
   email: string;
@@ -24,7 +25,7 @@ const Login = () => {
   // 이메일 / 비밀번호 로그인
   const onValid = async (data: LoginForm) => {
     await loginEmail(data.email, data.password)
-      .then((res) => {
+      .then((res: any) => {
         localStorage.setItem('uid', JSON.stringify(res.user.uid));
 
         toast.success(<h1>로그인 성공!</h1>, {
@@ -34,7 +35,7 @@ const Login = () => {
           navigate('/');
         }, 1500);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.log(error);
         toast.error(<h1>{error.message}</h1>, {
           autoClose: 1000,

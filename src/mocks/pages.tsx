@@ -1,9 +1,9 @@
-import DetailPage from '../pages/DetailPage';
-import FilterPage from '../pages/FilterPage';
-import JoinPage from '../pages/SignUpPage';
-import ListPage from '../pages/ListPage';
-import MyPage from '../pages/MyPage';
-import SignInPage from '../pages/SignInPage';
+import SignInPage from '@pages/SignInPage';
+import SignUpPage from '@pages/SignUpPage';
+import ListPage from '@pages/ListPage';
+import DetailPage from '@pages/DetailPage';
+import FilterPage from '@pages/FilterPage';
+import MyPage from '@pages/MyPage';
 
 export const pages = [
   {
@@ -15,7 +15,7 @@ export const pages = [
   {
     path: '/sign-up',
     label: 'sign-up',
-    element: <JoinPage />,
+    element: <SignUpPage />,
     withAuth: false,
   },
   {

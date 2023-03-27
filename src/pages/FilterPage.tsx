@@ -1,5 +1,5 @@
-import Layout from '../components/common/Layout';
 import { useParams } from 'react-router-dom';
+import Layout from '@components/common/Layout';
 
 const FilterPage = () => {
   const params = useParams();

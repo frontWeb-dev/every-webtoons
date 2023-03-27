@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { pages } from '../mocks/pages';
-import Auth from '../components/common/Auth';
-import Layout from '../components/common/Layout';
+import { pages } from '@mocks/pages';
+import Auth from '@components/common/Auth';
 
 const Router = createBrowserRouter(
   pages.map((page) => {

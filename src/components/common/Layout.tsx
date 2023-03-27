@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 
-import { menus } from './../../mocks/menu';
-import { joinClass } from '../../libs/utils';
+import { menus } from '@mocks/menu';
+import { joinClass } from '@libs/utils';
 
 interface LayoutProps {
   title?: string;

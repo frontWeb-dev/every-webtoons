@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import Layout from './Layout';
 
 interface LayoutProps {
   children: React.ReactNode;

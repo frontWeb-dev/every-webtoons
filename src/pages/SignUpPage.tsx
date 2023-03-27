@@ -1,6 +1,5 @@
-import React from 'react';
-import Layout from '../components/common/Layout';
-import SignUp from './../components/SignUp';
+import Layout from '@components/common/Layout';
+import SignUp from '@components/SignUp';
 
 const SignUpPage = () => {
   return (
