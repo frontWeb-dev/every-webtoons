@@ -3,7 +3,7 @@
 module.exports = {
   content: [
     // 폴더 내에 모든 디렉토리 내에 모든 파일.{확장자}
-    'src/src/**/*.{js,jsx,ts,tsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {

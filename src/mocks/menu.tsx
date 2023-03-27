@@ -2,7 +2,7 @@ import { SiNaver, SiKakaotalk, SiWebtoon } from 'react-icons/si';
 import { AiOutlineHome, AiOutlineCalendar } from 'react-icons/ai';
 export const menus = [
   {
-    path: '/list',
+    path: '/',
     label: '홈',
     icons: <AiOutlineHome size={28} />,
   },
