@@ -1,15 +1,10 @@
 import { SiNaver, SiKakaotalk, SiWebtoon } from 'react-icons/si';
-import { AiOutlineHome, AiOutlineCalendar } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 export const menus = [
   {
     path: '/',
     label: '홈',
     icons: <AiOutlineHome size={28} />,
-  },
-  {
-    path: '/filter/day',
-    label: '요일별 웹툰',
-    icons: <AiOutlineCalendar size={28} />,
   },
   {
     path: '/filter/naver',
@@ -22,4 +17,9 @@ export const menus = [
     icons: <SiWebtoon size={28} />,
   },
   { path: '/filter/kakaoPage', label: '카카오 페이지', icons: <SiKakaotalk size={28} /> },
+  {
+    path: '/user',
+    label: '마이페이지',
+    icons: <AiOutlineUser size={28} />,
+  },
 ];

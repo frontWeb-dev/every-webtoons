@@ -25,7 +25,7 @@ export const pages = [
     withAuth: true,
   },
   {
-    path: '/:title',
+    path: '/list/:title',
     label: 'detail',
     element: <DetailPage />,
     withAuth: true,

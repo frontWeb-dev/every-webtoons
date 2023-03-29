@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // icons
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { HiOutlineLogout } from 'react-icons/hi';
 
 import { menus } from '@mocks/menu';
 import { joinClass } from '@libs/utils';
@@ -10,23 +11,36 @@ interface LayoutProps {
   title?: string;
   hasTabBar?: boolean;
   goBack?: string;
+  detail?: boolean;
+  logout?: boolean;
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, goBack, hasTabBar, children }) => {
+const Layout: React.FC<LayoutProps> = ({
+  title,
+  goBack,
+  detail,
+  hasTabBar,
+  logout = false,
+  children,
+}) => {
   const { pathname } = useLocation();
-
   const navigate = useNavigate();
 
-  const uid = localStorage.getItem('uid');
-
+  const LoggedOut = () => {
+    alert('logout');
+  };
   const onclick = (path: string) => {
     navigate(`${path}`);
   };
   return (
     <div className='mx-auto max-w-md bg-white'>
       {/* 헤더  */}
-      <header className='fixed top-0 flex h-16 w-full max-w-md items-center justify-center border-b bg-white px-4 text-lg font-medium text-gray-700 shadow-sm'>
+      <header
+        className={joinClass(
+          'fixed top-0 z-[1000] flex h-16 w-full max-w-md items-center justify-center px-4 text-lg font-medium text-gray-700',
+          detail ? 'border-transparent ' : 'border-b bg-white shadow-sm'
+        )}>
         {/* 뒤로가기 */}
         {goBack && (
           <button
@@ -39,14 +53,22 @@ const Layout: React.FC<LayoutProps> = ({ title, goBack, hasTabBar, children }) =
         {/* 제목 */}
         {title && <h1 className='text-xl font-semibold'>{title}</h1>}
 
-        {uid && (
-          <button onClick={() => onclick('/user')} className='absolute right-4'>
-            <AiOutlineUser size={28} />
+        {/* 로그아웃  */}
+        {logout && (
+          <button onClick={LoggedOut} className='absolute right-4'>
+            <HiOutlineLogout size={28} />
           </button>
         )}
       </header>
 
-      <div className={joinClass('mt-16 w-full max-w-md', hasTabBar ? 'pb-16' : '')}>{children}</div>
+      <div
+        className={joinClass(
+          'relative w-full max-w-md',
+          hasTabBar ? 'pb-16' : '',
+          detail ? '' : 'mt-16'
+        )}>
+        {children}
+      </div>
 
       {/* 메뉴바  */}
       {hasTabBar && (

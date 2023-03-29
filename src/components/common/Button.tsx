@@ -12,7 +12,7 @@ const Button = ({ common, submit, cancle, children, ...rest }: ButtonProps) => {
   return (
     <>
       {common && (
-        <button {...rest} className='mb-1 w-full rounded-xl bg-blue-500 py-3 text-white'>
+        <button {...rest} className='mb-1 w-full rounded-xl bg-blue-500 py-2 text-white'>
           {children}
         </button>
       )}
