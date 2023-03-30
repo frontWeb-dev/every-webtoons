@@ -31,7 +31,7 @@ export const pages = [
     withAuth: true,
   },
   {
-    path: '/filter/:category',
+    path: '/:category',
     label: 'filter',
     element: <FilterPage />,
     withAuth: true,
