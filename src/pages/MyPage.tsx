@@ -3,20 +3,24 @@ import { Link } from 'react-router-dom';
 import Layout from '@components/common/Layout';
 import Skeleton from '@components/common/Skeleton';
 import Button from '@components/common/Button';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/store';
 
 const MyPage = () => {
   const [liked, setLiked] = useState([...Array(6)]);
+  const user = useSelector((state: RootState) => state.user.value);
   return (
     <Layout title='마이 페이지' goBack='/' logout>
       <div className=''>
         <div className='flex h-[20vh] items-center space-x-6 border-b px-6'>
-          <div className='h-24 w-24 rounded-full bg-slate-200'></div>
-          <div className='flex flex-col space-y-2'>
-            <h2>이름</h2>
-            <p>이메일</p>
+          <img className='h-24 w-24 rounded-full bg-slate-200' src={user.photoURL || ''} />
+          <div className='flex-col space-y-2'>
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
+
             <label
               htmlFor='changeProfile'
-              className='rounded-md border border-blue-500 bg-blue-500 p-1 text-sm text-white'>
+              className='block w-20 rounded-md border border-blue-500 bg-blue-500 p-1 text-center text-sm text-white'>
               사진 변경
             </label>
             <input id='changeProfile' type='file' className='hidden' />
