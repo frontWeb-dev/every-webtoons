@@ -35,7 +35,7 @@ const FilterPage = () => {
             <Tab key={i} onClick={onclick} label={a.label} updateDay={updateDay} />
           ))}
       </div>
-      <div className='grid grid-cols-3 gap-y-4  gap-x-2 px-4 pb-12 pt-[60px]'>
+      <div className='grid grid-cols-3 gap-y-4  gap-x-2 px-4 pb-12 pt-[55px]'>
         {isLoading &&
           [...Array(9)].map((_, i) => (
             <Link to={`/list/${i}`}>

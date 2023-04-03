@@ -29,6 +29,7 @@ const Login = () => {
   useEffect(() => {
     console.log(user);
   }, [user]);
+
   // 구글 로그인
   const googleLogin = async () => {
     const response = await loginGoogle();

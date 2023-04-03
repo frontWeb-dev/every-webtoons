@@ -4,12 +4,14 @@ import { joinClass } from '@libs/utils';
 interface TabProps {
   updateDay?: string;
   label: string;
+  name: string;
   onClick: React.MouseEventHandler<HTMLDivElement>;
 }
-const Tab = ({ onClick, updateDay, label }: TabProps) => {
+const Tab = ({ onClick, updateDay, label, name }: TabProps) => {
   return (
     <div
       onClick={onClick}
+      data-name={name}
       className={joinClass(
         'p-2 text-center',
         updateDay === label ? 'border-b-2 border-blue-500 ' : ''

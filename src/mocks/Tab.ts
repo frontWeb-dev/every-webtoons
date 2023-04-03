@@ -1,9 +1,5 @@
 export const Tabs = [
   {
-    label: '신작',
-    name: 'new',
-  },
-  {
     label: '매일+',
     name: 'naverDaily',
     onlyNaver: true,
@@ -14,27 +10,27 @@ export const Tabs = [
   },
   {
     label: '화',
-    name: 'mon',
+    name: 'tue',
   },
   {
     label: '수',
-    name: 'mon',
+    name: 'wed',
   },
   {
     label: '목',
-    name: 'mon',
+    name: 'thu',
   },
   {
     label: '금',
-    name: 'mon',
+    name: 'fri',
   },
   {
     label: '토',
-    name: 'mon',
+    name: 'sat',
   },
   {
     label: '일',
-    name: 'mon',
+    name: 'sun',
   },
   {
     label: '완결',
