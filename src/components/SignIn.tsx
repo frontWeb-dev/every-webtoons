@@ -3,17 +3,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loginEmail, loginGoogle } from '@firebase';
+import { database, loginEmail, loginGoogle } from '@firebase';
 import Button from '@components/common/Button';
 import Input from '@components/common/Input';
 import { RootState } from '@store/store';
 import { login } from '@store/userSlice';
 import { useEffect } from 'react';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface LoginForm {
   email: string;
   password: string;
   error?: string;
+}
+
+interface ExistUserForm {
+  email: string;
+  displayName: string;
+  photoURL: string;
 }
 
 const Login = () => {
@@ -26,9 +33,22 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginForm>({ mode: 'onChange' });
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  // firestore에 유저 정보 있는지 확인
+  const existUser = async (detail: ExistUserForm) => {
+    const { displayName, email, photoURL } = detail;
+    const docRef = doc(database, 'users', displayName);
+    const docSnap = await getDoc(docRef);
+
+    // 구글로 로그인한 적이 없으면 유저 정보 추가
+    if (!docSnap.exists()) {
+      await setDoc(doc(database, 'users', displayName), {
+        email,
+        username: displayName,
+        avatar: photoURL,
+        liked: [],
+      });
+    }
+  };
 
   // 구글 로그인
   const googleLogin = async () => {
@@ -36,6 +56,7 @@ const Login = () => {
     const detail = response.user;
     try {
       const { displayName, email, photoURL } = detail;
+      existUser(detail);
       dispatch(login({ name: displayName, email, photoURL }));
       SucessLogin(detail.uid);
     } catch (error) {
