@@ -48,7 +48,7 @@ const ListPage = () => {
         ) : (
           <>
             {data?.map((webtoon) => (
-              <Link to={`/list/${webtoon.title}`} key={webtoon.id}>
+              <Link to={`/list/${webtoon.title}`} key={webtoon._id}>
                 <img
                   className='h-40 w-full border border-slate-200 object-cover'
                   src={webtoon.img}

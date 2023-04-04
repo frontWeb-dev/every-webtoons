@@ -7,11 +7,32 @@ import { useQuery } from 'react-query';
 import { getWebtoonInfo } from '@api/webtoon';
 import SkeletonDetail from '@components/SkeletonDetail';
 
+import { database } from '@firebase';
+import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/store';
+
 const DetailPage = () => {
   const { title } = useParams();
+  const user = useSelector((state: RootState) => state.user.value);
+
   const { data, isLoading } = useQuery(['webtoon'], async () => await getWebtoonInfo(title));
 
   const [isLike, setIsLike] = useState(false);
+
+  const saveLiked = async () => {
+    setIsLike((prev) => !prev);
+    const washingtonRef = doc(database, 'users', user.name);
+    if (isLike) {
+      await updateDoc(washingtonRef, {
+        liked: arrayRemove(title),
+      });
+    } else {
+      await updateDoc(washingtonRef, {
+        liked: arrayUnion(title),
+      });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -24,7 +45,7 @@ const DetailPage = () => {
   return (
     <Layout goBack='/' detail>
       <img
-        className='h-[55vh] w-full bg-slate-200 object-cover object-top'
+        className='h-[55vh] w-full bg-slate-200 object-cover'
         src={data[0].img}
         alt={data[0].title}
       />
@@ -37,10 +58,10 @@ const DetailPage = () => {
               <span>{data[0].service}</span> / <span>{data[0].updateDays.join(' ')}</span>
             </p>
             <p>
-              좋아요 : <span>{data[0].fanCount}</span>
+              좋아요 : <span>{data[0].fanCount === 'null' ? 0 : data[0].fanCount}만</span>
             </p>
           </div>
-          <div onClick={() => setIsLike((prev) => !prev)}>
+          <div onClick={saveLiked}>
             {isLike ? <AiFillHeart size={30} /> : <AiOutlineHeart size={30} />}
           </div>
         </div>
