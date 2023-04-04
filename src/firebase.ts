@@ -9,21 +9,24 @@ import {
   updateProfile, // 닉네임과 사진 정보 profile에 저장
 } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDGLxn4AOS7vhIyLy9VRkAYKEdEbvy0lss',
-  authDomain: 'korea-webtoon.firebaseapp.com',
-  projectId: 'korea-webtoon',
-  storageBucket: 'korea-webtoon.appspot.com',
-  messagingSenderId: '310092931229',
-  appId: '1:310092931229:web:19396bcc80549852c4b474',
+  apiKey: 'AIzaSyCeZvDFuJKOG-zDP2-MDERRoV0GcOm7YF0',
+  authDomain: 'every-webtoons-4c928.firebaseapp.com',
+  projectId: 'every-webtoons-4c928',
+  storageBucket: 'every-webtoons-4c928.appspot.com',
+  messagingSenderId: '918007705097',
+  appId: '1:918007705097:web:bd09c6a38a2a4c35c752d8',
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// auth 설정 필수!!
+export const database = getFirestore(app);
+
+// auth 설정
 const auth = getAuth();
 
 //Email 회원가입
