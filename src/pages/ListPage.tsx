@@ -22,10 +22,6 @@ const ListPage = () => {
     setUpdateDay({ label: text, name: name });
   };
 
-  useEffect(() => {
-    console.log(updateDay);
-  }, [updateDay]);
-
   return (
     <Layout hasTabBar title='모두의 웹툰'>
       <div className='fixed flex h-[40px] w-full max-w-md justify-around border-b bg-white'>

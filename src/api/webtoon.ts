@@ -7,3 +7,17 @@ export const getAllWebtoons = async (day: string) => {
 
   return data.webtoons;
 };
+
+export const getWebtoonInfo = async (title: string) => {
+  const { data } = await axios({ url: `${BASE_URL}/search?keyword=${title}` });
+
+  if (data.webtoons.length !== 1) {
+    const result = data.webtoons.filter(
+      (a) => a.fanCount === Math.max(...data.webtoons.map((a) => a.fanCount))
+    );
+
+    return result;
+  }
+
+  return data.webtoons;
+};

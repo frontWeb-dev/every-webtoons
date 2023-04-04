@@ -43,11 +43,11 @@ const Layout: React.FC<LayoutProps> = ({
         )}>
         {/* 뒤로가기 */}
         {goBack && (
-          <button
-            onClick={() => onclick(goBack)}
-            className='absolute left-4 h-8 w-8 cursor-pointer'>
-            <MdKeyboardArrowLeft size={32} />
-          </button>
+          <div className='absolute left-4 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white'>
+            <button onClick={() => onclick(goBack)}>
+              <MdKeyboardArrowLeft size={32} />
+            </button>
+          </div>
         )}
 
         {/* 제목 */}
