@@ -11,9 +11,6 @@ interface ButtonProps {
 }
 
 const Button = ({ url, common, submit, cancle, children, ...rest }: ButtonProps) => {
-  const onclick = () => {
-    location.href = url;
-  };
   return (
     <>
       {common && (

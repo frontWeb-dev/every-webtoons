@@ -19,6 +19,9 @@ const DetailPage = () => {
   const [isLike, setIsLike] = useState(false);
   const liked = doc(database, 'users', user);
 
+  const onclick = (url) => {
+    location.href = url;
+  };
   const saveLiked = async () => {
     setIsLike((prev) => !prev);
 
@@ -74,7 +77,12 @@ const DetailPage = () => {
             {isLike ? <AiFillHeart size={30} /> : <AiOutlineHeart size={30} />}
           </div>
         </div>
-        <Button common url={data[0].url}>
+        <Button
+          common
+          onClick={(e: React.MouseEvent) => {
+            e.preventDefault();
+            location.href = data[0].url;
+          }}>
           보러 가기
         </Button>
       </div>
