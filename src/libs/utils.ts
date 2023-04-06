@@ -4,10 +4,13 @@ export const joinClass = (...classnames: string[]) => {
 
 export const getUid = () => {
   const info = JSON.parse(localStorage.getItem('user-info'));
-  return info.uid;
+
+  if (info) return info.uid;
+  else return null;
 };
 
 export const getUsername = () => {
   const info = JSON.parse(localStorage.getItem('user-info'));
-  return info.name;
+  if (info) return info.name;
+  else return null;
 };
