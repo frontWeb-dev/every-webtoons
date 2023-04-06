@@ -21,3 +21,9 @@ export const getWebtoonInfo = async (title: string) => {
 
   return data.webtoons;
 };
+
+export const getServiceWebtoon = async (service: string, day: string) => {
+  const { data } = await axios.get(`${BASE_URL}/?perPage=100&service=${service}&updateDay=${day}`);
+
+  return data.webtoons;
+};
