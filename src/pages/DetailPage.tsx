@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import Layout from '@components/common/Layout';
-import Button from '@components/common/Button';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getWebtoonInfo } from '@api/webtoon';
-import SkeletonDetail from '@components/SkeletonDetail';
+import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore';
 
-import { database } from '@firebase';
-import { arrayRemove, arrayUnion, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { getWebtoonInfo } from '@api/webtoon';
 import { getUsername } from '@libs/utils';
+import { database } from '@firebase';
+import Layout from '@components/common/Layout';
+import Button from '@components/common/Button';
+import SkeletonDetail from '@components/SkeletonDetail';
 
 const DetailPage = () => {
   const { title } = useParams();
@@ -37,7 +37,7 @@ const DetailPage = () => {
     (async () => {
       const data = (await getDoc(liked)).data();
       data.liked &&
-        data.liked.map((name) => {
+        data.liked.map((name: string) => {
           if (name === title) setIsLike(true);
         });
     })();

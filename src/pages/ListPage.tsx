@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+
+import { Tabs } from '@mocks/Tab';
 import Layout from '@components/common/Layout';
 import Skeleton from '@components/common/Skeleton';
-import { Link } from 'react-router-dom';
-import { Tabs } from '@mocks/Tab';
 import Tab from '@components/common/Tab';
-import { useMutation, useQuery } from 'react-query';
 import { getAllWebtoons } from '@api/webtoon';
+import { Webtoon } from '@types';
 
 const ListPage = () => {
   const [updateDay, setUpdateDay] = useState({ label: '월', name: 'mon' });
@@ -47,7 +49,7 @@ const ListPage = () => {
           </>
         ) : (
           <>
-            {data?.map((webtoon) => (
+            {data?.map((webtoon: Webtoon) => (
               <Link to={`/list/${webtoon.title}`} key={webtoon._id}>
                 <img
                   className='h-40 w-full border border-slate-200 object-cover'

@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '@components/common/Layout';
-import Skeleton from '@components/common/Skeleton';
-
 import { doc, getDoc } from 'firebase/firestore';
+
 import { database } from '@firebase';
 import { getWebtoonInfo } from '@api/webtoon';
-import { useQuery } from 'react-query';
 import { getUsername } from '@libs/utils';
+import Layout from '@components/common/Layout';
+import Skeleton from '@components/common/Skeleton';
 
 interface User {
   username: string;

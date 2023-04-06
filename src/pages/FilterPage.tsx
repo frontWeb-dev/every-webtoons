@@ -1,11 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
-import Layout from '@components/common/Layout';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+
+import { Webtoon } from '@types';
+import { getServiceWebtoon } from '@api/webtoon';
 import { Tabs } from '@mocks/Tab';
+import Layout from '@components/common/Layout';
 import Tab from '@components/common/Tab';
 import Skeleton from '@components/common/Skeleton';
-import { useQuery } from 'react-query';
-import { getServiceWebtoon } from '@api/webtoon';
 
 const FilterPage = () => {
   const [updateDay, setUpdateDay] = useState({ label: '월', name: 'mon' });
@@ -34,23 +36,23 @@ const FilterPage = () => {
     <Layout hasTabBar title='모두의 웹툰'>
       <div className='fixed flex h-[40px] w-full max-w-md justify-around border-b bg-white'>
         {category !== 'naver' &&
-          Tabs.filter((a) => !a.onlyNaver).map((a, i) => (
+          Tabs.filter((menu) => !menu.onlyNaver).map((menu, i) => (
             <Tab
               key={i}
               onClick={onclick}
-              name={a.name}
-              label={a.label}
+              name={menu.name}
+              label={menu.label}
               updateDay={updateDay.label}
             />
           ))}
 
         {category == 'naver' &&
-          Tabs.map((a, i) => (
+          Tabs.map((menu, i) => (
             <Tab
               key={i}
-              name={a.name}
+              name={menu.name}
               onClick={onclick}
-              label={a.label}
+              label={menu.label}
               updateDay={updateDay.label}
             />
           ))}
@@ -66,7 +68,7 @@ const FilterPage = () => {
           </>
         ) : (
           <>
-            {data?.map((webtoon) => (
+            {data?.map((webtoon: Webtoon) => (
               <Link to={`/list/${webtoon.title}`} key={webtoon._id}>
                 <img
                   className='h-40 w-full border border-slate-200 object-cover'
