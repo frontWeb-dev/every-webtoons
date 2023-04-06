@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import Layout from '@components/common/Layout';
 import Button from '@components/common/Button';
@@ -8,31 +8,40 @@ import { getWebtoonInfo } from '@api/webtoon';
 import SkeletonDetail from '@components/SkeletonDetail';
 
 import { database } from '@firebase';
-import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { useSelector } from 'react-redux';
-import { RootState } from '@store/store';
+import { arrayRemove, arrayUnion, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { getUsername } from '@libs/utils';
 
 const DetailPage = () => {
   const { title } = useParams();
-  const user = useSelector((state: RootState) => state.user.value);
-
+  const user = getUsername();
   const { data, isLoading } = useQuery(['webtoon'], async () => await getWebtoonInfo(title));
 
   const [isLike, setIsLike] = useState(false);
+  const liked = doc(database, 'users', user);
 
   const saveLiked = async () => {
     setIsLike((prev) => !prev);
-    const washingtonRef = doc(database, 'users', user.name);
+
     if (isLike) {
-      await updateDoc(washingtonRef, {
+      await updateDoc(liked, {
         liked: arrayRemove(title),
       });
     } else {
-      await updateDoc(washingtonRef, {
+      await updateDoc(liked, {
         liked: arrayUnion(title),
       });
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      const data = (await getDoc(liked)).data();
+      data.liked &&
+        data.liked.map((name) => {
+          if (name === title) setIsLike(true);
+        });
+    })();
+  }, []);
 
   if (isLoading) {
     return (

@@ -1,4 +1,9 @@
-import React from 'react';
+import { database } from '@firebase';
+import { getUid } from '@libs/utils';
+import { RootState } from '@store/store';
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -6,12 +11,13 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Auth: React.FC<LayoutProps> = ({ children }) => {
+const Auth = ({ children }: LayoutProps) => {
   const navigate = useNavigate();
 
-  const id = localStorage.getItem('uid');
+  const uid = getUid();
+
   // 인증 여부 확인
-  if (!id) {
+  if (!uid) {
     toast.error(<h1>로그인을 해주세요!</h1>);
 
     setTimeout(() => {

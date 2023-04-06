@@ -58,7 +58,7 @@ const Login = () => {
       const { displayName, email, photoURL } = detail;
       existUser(detail);
       dispatch(login({ name: displayName, email, photoURL }));
-      SucessLogin(detail.uid);
+      SucessLogin(detail.uid, detail.displayName);
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +72,7 @@ const Login = () => {
       .then((res: any) => {
         const { displayName, email } = res.user;
         dispatch(login({ ...user, name: displayName, email: email }));
-        SucessLogin(res.user.uid);
+        SucessLogin(res.user.uid, displayName);
       })
       .catch((error: any) => {
         console.log(error);
@@ -82,11 +82,17 @@ const Login = () => {
       });
   };
 
-  const SucessLogin = (uid: string) => {
-    localStorage.setItem('uid', JSON.stringify(uid));
+  const SucessLogin = (uid: string, username: string) => {
+    const data = {
+      uid: uid,
+      name: username,
+    };
+    localStorage.setItem('user-info', JSON.stringify(data));
+
     toast.success(<h1>로그인 성공!</h1>, {
       autoClose: 1000,
     });
+
     setTimeout(() => {
       navigate('/');
     }, 1500);
