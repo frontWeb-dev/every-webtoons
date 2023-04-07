@@ -29,7 +29,7 @@ const SearchList = () => {
       </form>
 
       {searchList?.map((webtoon) => (
-        <Link to={`/list/${webtoon.title}`}>
+        <Link to={`/${webtoon.service}/${webtoon.title}`}>
           <div key={webtoon._id} className=" mb-4 flex space-x-4">
             <img src={webtoon.img} className="h-auto w-28" />
             <div className="flex flex-col justify-center">
