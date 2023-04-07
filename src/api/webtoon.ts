@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = 'https://korea-webtoon-api.herokuapp.com';
+const BASE_URL = "https://korea-webtoon-api.herokuapp.com";
 
 export const getAllWebtoons = async (day: string) => {
   const { data } = await axios.get(`${BASE_URL}/?perPage=100&updateDay=${day}`);
@@ -18,6 +18,12 @@ export const getWebtoonInfo = async (title: string) => {
 
     return result;
   }
+
+  return data.webtoons;
+};
+
+export const getSearchWebtoon = async (body: string) => {
+  const { data } = await axios({ url: `${BASE_URL}/search?keyword=${body}` });
 
   return data.webtoons;
 };
