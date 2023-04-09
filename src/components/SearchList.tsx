@@ -27,6 +27,7 @@ const SearchList = () => {
       <form onSubmit={handleSubmit} className='relative'>
         <Input onChange={changeValue} type='text' placeholder='검색어를 입력하세요' />
         <button type='submit' className='absolute top-3 right-0 px-3'>
+          <span className='sr-only'>검색하기</span>
           <AiOutlineSearch size={28} />
         </button>
       </form>
@@ -35,7 +36,7 @@ const SearchList = () => {
         {searchList?.map((webtoon) => (
           <Link to={`/${webtoon.service}/${webtoon.title}`}>
             <div key={webtoon._id} className=' mb-4 flex space-x-4'>
-              <img src={webtoon.img} className='h-auto w-28' />
+              <img src={webtoon.img} className='h-auto w-28' alt={webtoon.title} />
               <div className='flex flex-col justify-center'>
                 <h2>{webtoon.title}</h2>
                 <p>{webtoon.author}</p>

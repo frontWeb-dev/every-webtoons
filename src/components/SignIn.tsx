@@ -146,8 +146,10 @@ const Login = () => {
       <div className='flex flex-col items-center justify-center'>
         <p className='mb-4 text-sm'>소설 계정 로그인</p>
         <div className='flex w-full justify-center space-x-4'>
-          <button onClick={googleLogin}>구글</button>
-          <button>깃허브</button>
+          <button onClick={googleLogin}>
+            <span className='sr-only'>구글로 로그인</span>
+            구글
+          </button>
         </div>
       </div>
     </div>

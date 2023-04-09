@@ -45,7 +45,12 @@ const Profile = ({ user }: UserProps) => {
 
   return (
     <div className='flex h-[20vh] items-center space-x-6 border-b px-6'>
-      <img id='avatar' className='h-24 w-24 rounded-full bg-slate-200' src={imageUrl} />
+      <img
+        id='avatar'
+        className='h-24 w-24 rounded-full bg-slate-200'
+        src={imageUrl}
+        alt={username}
+      />
       <div className='flex-col space-y-2'>
         <h2>{username}</h2>
         <p>{email}</p>
