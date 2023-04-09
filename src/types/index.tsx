@@ -13,3 +13,11 @@ export interface Webtoons {
     service?: string;
   };
 }
+
+export interface UserProps {
+  user: {
+    username: string;
+    email: string;
+    avatar?: string;
+  };
+}

@@ -1,11 +1,11 @@
 import { database, storage } from '@firebase';
+import { UserProps } from '@types';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { getDownloadURL, listAll, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useEffect, useState } from 'react';
 
-const Profile = ({ user }) => {
+const Profile = ({ user }: UserProps) => {
   const { username, email, avatar } = user;
-  console.log(user);
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrl, setImageUrl] = useState(avatar);
 
@@ -47,8 +47,8 @@ const Profile = ({ user }) => {
     <div className='flex h-[20vh] items-center space-x-6 border-b px-6'>
       <img id='avatar' className='h-24 w-24 rounded-full bg-slate-200' src={imageUrl} />
       <div className='flex-col space-y-2'>
-        <h2>{user.username}</h2>
-        <p>{user?.email}</p>
+        <h2>{username}</h2>
+        <p>{email}</p>
 
         <label
           htmlFor='changeProfile'
