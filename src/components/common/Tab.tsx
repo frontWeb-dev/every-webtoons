@@ -1,5 +1,5 @@
-import React from 'react';
-import { joinClass } from '@libs/utils';
+import React from "react";
+import { joinClass } from "@libs/utils";
 
 interface TabProps {
   updateDay?: string;
@@ -13,10 +13,11 @@ const Tab = ({ onClick, updateDay, label, name }: TabProps) => {
       onClick={onClick}
       data-name={name}
       className={joinClass(
-        'p-2 text-center',
-        updateDay === label ? 'border-b-2 border-blue-500 ' : ''
-      )}>
-      <p className={joinClass('text-sm', updateDay === label ? 'font-bold text-blue-500' : '')}>
+        "p-2 text-center",
+        updateDay === label ? "border-b-2 border-blue-500 " : ""
+      )}
+    >
+      <p className={joinClass("text-sm", updateDay === label ? "font-bold text-blue-500" : "")}>
         {label}
       </p>
     </div>
