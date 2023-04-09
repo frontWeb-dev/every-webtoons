@@ -8,7 +8,8 @@ import {
   createUserWithEmailAndPassword, //email 회원가입
   updateProfile, // 닉네임과 사진 정보 profile에 저장
 } from 'firebase/auth';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -25,6 +26,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const database = getFirestore(app);
+
+export const storage = getStorage(app);
 
 // auth 설정
 const auth = getAuth();
