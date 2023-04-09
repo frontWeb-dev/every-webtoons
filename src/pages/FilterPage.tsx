@@ -8,6 +8,7 @@ import { Tabs } from '@mocks/Tab';
 import Layout from '@components/common/Layout';
 import Tab from '@components/common/Tab';
 import Skeleton from '@components/common/Skeleton';
+import Card from '@components/Card';
 
 const FilterPage = () => {
   const [updateDay, setUpdateDay] = useState({ label: '월', name: 'mon' });
@@ -67,13 +68,7 @@ const FilterPage = () => {
         ) : (
           <>
             {data?.map((webtoon: Webtoon) => (
-              <Link to={`/${webtoon.service}/${webtoon.title}`} key={webtoon._id}>
-                <img
-                  className='h-40 w-full border border-slate-200 object-cover'
-                  src={webtoon.img}
-                />
-                <h3 className='text-elipse mt-2 text-sm font-bold leading-4 '>{webtoon.title}</h3>
-              </Link>
+              <Card webtoon={webtoon} />
             ))}
           </>
         )}

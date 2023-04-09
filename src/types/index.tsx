@@ -4,3 +4,12 @@ export interface Webtoon {
   title: string;
   service?: string;
 }
+
+export interface Webtoons {
+  webtoon: {
+    _id: string;
+    img: string;
+    title: string;
+    service?: string;
+  };
+}
