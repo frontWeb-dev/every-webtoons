@@ -49,7 +49,7 @@ const ListPage = () => {
         ) : (
           <>
             {data?.map((webtoon: Webtoon) => (
-              <Card webtoon={webtoon} />
+              <Card webtoon={webtoon} key={webtoon._id} />
             ))}
           </>
         )}
